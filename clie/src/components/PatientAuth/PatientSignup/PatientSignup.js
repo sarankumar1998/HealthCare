@@ -21,7 +21,7 @@ function PatientSignup() {
   const handleSubmit = () => {
     setLoading(true);
     axios
-      .post('http://192.168.10.117:5000/api/v2/patientSignup', formData)
+      .post('http://192.168.0.78:5000/api/v2/patientSignup', formData)
       .then((response) => {
         console.log(response.data);
         setLoading(false);

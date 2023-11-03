@@ -25,7 +25,7 @@ function DoctorHome() {
 
   useEffect(() => {
     // Make the GET request using axios
-    axios.get(`http://192.168.10.117:5000/api/v3/getDoctorAppointments?doctorId=${id}`)
+    axios.get(`http://192.168.0.78:5000/api/v3/getDoctorAppointments?doctorId=${id}`)
       .then(response => {
         setDoctorAppointments(response.data.doctorAppointments);
       })
@@ -54,7 +54,7 @@ function DoctorHome() {
       endTime: endTime
     };
 
-    axios.post('http://192.168.10.117:5000/api/v3/setAvailability', payload)
+    axios.post('http://192.168.0.78:5000/api/v3/setAvailability', payload)
       .then(response => {
         toast.success(response.data.message);
         fetchAvailability()
@@ -66,7 +66,7 @@ function DoctorHome() {
       });
   };
   const fetchAvailability = () => {
-    axios.get(`http://192.168.10.117:5000/api/v3/getAvailability/${id}`)
+    axios.get(`http://192.168.0.78:5000/api/v3/getAvailability/${id}`)
       .then(response => {
         setAvailability(response.data)
       })

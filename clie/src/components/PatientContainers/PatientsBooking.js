@@ -22,7 +22,7 @@ function PatientsBooking() {
 console.log(selectedDate);
 
     useEffect(() => {
-        axios.get('http://192.168.10.117:5000/api/v3/getAvailability')
+        axios.get('http://192.168.0.78:5000/api/v3/getAvailability')
             .then(response => {
                 setDoctorsAvailability(response.data);
             })
@@ -47,7 +47,7 @@ console.log(selectedDate);
 
     
             if (confirmed) {
-                axios.post('http://192.168.10.117:5000/api/v3/bookAppointment', requestData)
+                axios.post('http://192.168.0.78:5000/api/v3/bookAppointment', requestData)
                     .then(response => {
                         console.log('Appointment booked successfully:', response.data.message);
                         // Handle UI updates after successful booking if needed.
