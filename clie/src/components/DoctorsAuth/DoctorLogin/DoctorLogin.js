@@ -18,7 +18,7 @@ function DoctorLogin() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    axios.post('http://192.168.10.117:5000/api/v1/log', {
+    axios.post('http://192.168.0.78:5000/api/v1/log', {
       email,
       password
     }).then(response => {

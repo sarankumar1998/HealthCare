@@ -21,7 +21,7 @@ function PatientLogin() {
     const handleSubmit = () => {
         setLoading(true);
         axios
-            .post('http://192.168.10.117:5000/api/v2/patientLogin', formData)
+            .post('http://192.168.0.78:5000/api/v2/patientLogin', formData)
             .then((response) => {
                 setTimeout(() => {
                     navigate("/patientsBooking");

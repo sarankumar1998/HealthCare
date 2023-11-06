@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './PatientsBooking.css';
+
 
 import axios from 'axios';
 import {
@@ -22,7 +24,7 @@ function PatientsBooking() {
 console.log(selectedDate);
 
     useEffect(() => {
-        axios.get('http://192.168.10.117:5000/api/v3/getAvailability')
+        axios.get('http://192.168.0.78:5000/api/v3/getAvailability')
             .then(response => {
                 setDoctorsAvailability(response.data);
             })
@@ -32,7 +34,8 @@ console.log(selectedDate);
     }, []);
 
     const handleBooking = (doctorUniqId, id,date,startTimes) => { // Use the date parameter
-        console.log(date,"date");
+
+        console.log(doctorUniqId, id,date,startTimes);
         if (selectedStartTime && selectedDate) {
             const timeslot = ` ${selectedStartTime}:00`; // Construct the timeslot
             console.log(timeslot);
@@ -47,7 +50,7 @@ console.log(selectedDate);
 
     
             if (confirmed) {
-                axios.post('http://192.168.10.117:5000/api/v3/bookAppointment', requestData)
+                axios.post('http://192.168.0.78:5000/api/v3/bookAppointment', requestData)
                     .then(response => {
                         console.log('Appointment booked successfully:', response.data.message);
                         // Handle UI updates after successful booking if needed.
@@ -84,29 +87,30 @@ console.log(selectedDate);
                         <Card style={{ height: '100%' }}>
                             <CardContent>
                                 <div className="d-flex justify-content-between mb-3">
-                                    <div>
+                                    <div className='chips'>
                                         <Typography variant="h6">Dr. {doctor.doctorName}</Typography>
                                         <Typography variant="body1">{doctor.specialist}</Typography>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-xl-12">
+                                    <div className="col-xl-12 chip">
                                         {doctor.availability.map((availabilityItem, index) => (
                                             <Chip
-                                                style={{ padding: "1.6rem", borderRadius: "6px", margin: '0.5rem', background: "yellow" }}
+                                            className="mt-2 "
+                                                // style={{  }}
                                                 sx={{ borderRadius: '0' }}
                                                 key={index}
                                                 label={<>  {new Date(availabilityItem.dates[0]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                                     <br />
                                                     {availabilityItem.startTimes.length} Appts </>}
                                                 onClick={() => handleChipClick( availabilityItem.startTimes , doctor.doctorId, availabilityItem.dates[0])}
-                                                className="mt-2"
+                                             
                                             />
                                         ))}
                                     </div>
                                 </div>
                             </CardContent>
-                        </Card>
+                        </Card>.
                         <ApptDialog
                             dialogOpen={dialogOpen}
                             selectedDate={selectedDate}

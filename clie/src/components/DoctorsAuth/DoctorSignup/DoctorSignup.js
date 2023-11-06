@@ -64,7 +64,7 @@ function DoctorSignup() {
     const sexValue = isMale ? 'M' : (isFemale ? 'F' : '');
 
     axios
-      .post('http://192.168.10.117:5000/api/v1/doc', {
+      .post('http://192.168.0.78:5000/api/v1/doc', {
         gender: sexValue,
         name,
         email,

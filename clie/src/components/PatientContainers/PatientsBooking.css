@@ -1,0 +1,10 @@
+.MuiChip-label:hover {
+    background-color: rgb(10, 10, 68);
+    color: white;
+  }
+  .MuiChip-label{
+    background-color: yellow;
+    margin: 1rem;
+  }
+/* 
+  padding: "1.6rem", borderRadius: "6px", margin: '0.5rem', background: "yellow" */

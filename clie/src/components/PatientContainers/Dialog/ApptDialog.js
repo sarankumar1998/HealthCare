@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import {
     Dialog,
     DialogContent,
@@ -10,6 +11,8 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+
 
 export default function ApptDialog({ doctorUniqId, id, dialogOpen, handleCloseDialog, selectedDate, doctorsAvailability, setSelectedStartTime, handleBooking }) {
     const [selectedDoctorInfo, setSelectedDoctorInfo] = useState(null);
@@ -91,13 +94,14 @@ export default function ApptDialog({ doctorUniqId, id, dialogOpen, handleCloseDi
                                 </Typography>
                                 {getAvailableSlotsForDate(availabilityItem.dates[0]).map((startTime, slotIndex) => (
                                     <Chip
+                                    
                                         style={{ padding: "0.5rem", fontSize: "15px", borderRadius: "2px", margin: '0.3rem', background: "yellow" }}
                                         key={slotIndex}
                                         label={convertTo12HourFormat(startTime)} // Convert time to 12-hour format
                                         className="mt-2"
                                         onClick={() => {
                                             setSelectedStartTime(startTime);
-                                            handleBooking(doctorUniqId, id, availabilityItem.dates[0],availabilityItem.startTimes);
+                                            handleBooking(doctorUniqId, id, availabilityItem.dates[0],startTime);
                                         }}
                                     />
                                 ))}
